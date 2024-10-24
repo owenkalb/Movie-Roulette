@@ -1,0 +1,46 @@
+Class Group: 
+	5 Digit ID made by Group Leader(GL) (xxxxx)
+	Contains Users in group
+		Testing purposes us 4
+	User Assignment
+		Random user assignment
+			then rotate by 1
+
+	Group movie ratings
+		display groups ratings fro movies 
+
+		Filters
+			Genre
+			Age Rating
+			Film Rating
+	
+Class User: 
+	Account creation and login
+	Name =< 16 chars
+		No repeated names
+		No special chars ( Numbers allowed)
+	Password =< 16 chars
+		Implement pass strength( Numbers, Lower/Uppercase letters, at least 1 symbol )
+			If fail 3x, timeout for x seconds
+	Movie Data: 
+		Watch history
+			Rating History
+		
+	Join/make group
+		if join still normal user
+		if make group, becomes group admin
+
+	Preferences:
+		Genre
+		Movie Age Ratings
+		Movie Rating x/10
+
+Class Group Admin
+	Remove users
+
+Class Movie:
+	Name
+	Genre
+	Age Rating
+
+	For now may just 100 per genre stored
