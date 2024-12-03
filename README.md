@@ -1,4 +1,5 @@
 # Weekly-Movie-Roulette
+# NOTE, USER VERSION 1 WHEN YOU CLONE THE GIT
 Initial Setup:
 we used vscode to work on our project, we used the following extensions:
 Django
