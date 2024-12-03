@@ -4,10 +4,1083 @@
 
 <!-- Replace block content in base_template.html -->
 {% block content %}
-<h1>Movie Roulette</h1>
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Movie-Roulette</title>
+<style>
+/* ============================== Home Page Styling ============================== */
+.week-content table {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.week-content th, .week-content td {
+    padding: 25px;
+    border: 5px solid #000000;
+    text-align: center;
+    font-size: 16px;
+}
+
+.week-content button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.week-content button:hover {
+    background-color: #555;
+}
+
+/* ============================== General Styling ============================== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #b3e6f7;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-bottom: 2px solid #333;
+}
+
+.tabs {
+    display: flex;
+    gap: 20px;
+}
+
+.tabs a {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.tabs a:hover, .tabs a.active {
+    background-color: #555;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.profile span {
+    font-size: 14px;
+    color: #333;
+}
+
+/* ============================== Dropdown Styling ============================== */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f4f4f4;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+section {
+    display: none;
+}
+
+#home {
+    display: block;
+}
+
+/* ============================== Week Display Styling ============================== */
+.week-content {
+    display: none;
+}
+
+.active-week {
+    display: block;
+}
+
+/* ============================== Preferences Section Styling ============================== */
+.preferences-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.genre-section, .ratings-section {
+    width: 40%;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.preferences-container h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+label {
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.2);
+}
+.save-button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+    background-color: #000000;
+}
+
+.save-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 128, 0, 0.5);
+}
+
+/* ============================== My Movies Tab Styling ============================== */
+#mymovies {
+    display: none;
+}
+
+#movieForm {
+    margin-bottom: 20px;
+}
+
+#movieForm label {
+    font-size: 16px;
+    margin-right: 10px;
+}
 
 
-<h2>More to come</h2>
+#movieForm input[type="text"], 
+#movieForm input[type="number"], 
+#movieForm select {
+    width: 90%;
+    max-width: 400px; 
+    padding: 8px;
+    font-size: 14px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+
+#addMovieButton {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#movieGenre {
+    padding: 5px;
+    font-size: 14px;
+    margin-right: 10px;
+    width: 200px;
+}
+
+#addMovieButton:hover {
+    background-color: #000;
+}
+
+
+#movieTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#movieTable th, #movieTable td {
+    padding: 10px;
+    text-align: left;
+    border: 5px solid #000;
+}
+
+#movieTable th {
+    background-color: #f4f4f4;
+}
+
+/* ============================== Random Movie Section Styling ============================== */
+#random-movie {
+    display: none;
+    text-align: center;
+    margin-top: 40px;
+}
+
+#random-movie button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+#random-movie button:hover {
+    background-color: #555;
+}
+
+#randomGenre {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+}
+#randomMovieResultTable {
+    width: 50%; 
+    border-collapse: collapse;
+    margin-top: 10px;  
+    margin-left: auto;  
+    margin-right: auto;  
+    border: 5px solid #000;
+}
+
+#randomMovieResultTable th, #randomMovieResultTable td {
+    padding: 10px;
+    text-align: left;
+    border: 5px solid #000;
+}
+
+#randomMovieResultTable th {
+    background-color: #f4f4f4;
+}
+
+#randomMovieResult {
+    background-color: white;
+    color: black;
+}
+
+
+/* ============================== Roulette Wheel Styling ============================== */
+#rouletteWheel {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.wheel {
+    width: 100%;
+    height: 100%;
+    border: 5px solid #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: conic-gradient(
+        #ffcc00 0% 5%, 
+        #ff6600 5% 10%, 
+        #ff0066 10% 15%, 
+        #9900ff 15% 20%, 
+        #0099ff 20% 25%, 
+        #ffcc00 25% 30%, 
+        #ff6600 30% 35%, 
+        #ff0066 35% 40%, 
+        #9900ff 40% 45%, 
+        #0099ff 45% 50%, 
+        #ffcc00 50% 55%, 
+        #ff6600 55% 60%, 
+        #ff0066 60% 65%, 
+        #9900ff 65% 70%, 
+        #0099ff 70% 75%, 
+        #ffcc00 75% 80%, 
+        #ff6600 80% 85%, 
+        #ff0066 85% 90%, 
+        #9900ff 90% 95%, 
+        #0099ff 95% 100%
+    );
+    transition: transform 4s ease-out;
+    transform-origin: center;
+}
+
+#rouletteWheel .pointer {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background-color: #333;
+    border-radius: 50%;
+}
+
+#randomMovieWheelContainer {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+#randomMovieWheel {
+    width: 100%;
+    height: 100%;
+    border: 5px solid #555;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: conic-gradient(
+        #ff9999 0% 20%, 
+        #99ff99 20% 40%, 
+        #9999ff 40% 60%, 
+        #ffff99 60% 80%, 
+        #ff99ff 80% 100%
+    );
+    transform-origin: center;
+}
+/* ============================== Profile Page Section =============================== */
+#profile {
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+table td, table th {
+    padding: 10px;
+    text-align: left;
+    border: 5px solid #000;
+}
+
+table th {
+    background-color: #f4f4f4;
+}
+
+input[type="text"], input[type="password"], textarea {
+    width: 98%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+</style>
+		
+		
+		
+</head>
+	<body>
+		<header>
+			<h1>Movie-Roulette</h1>
+		</header>
+		<nav>
+			<div class="tabs">
+				<a id="homeTab" class="active" onclick="showTab('home')">Home</a>
+				<a id="myMoviesTab" onclick="showTab('myMovies')">My Movies</a>
+				<a id="preferencesTab" onclick="showTab('preferences')">Preferences</a>
+				<a id="randomMovieTab" onclick="showTab('random-movie')">Random Movie</a>
+			</div>
+			<a id="profileTab" onclick="showTab('profile')">
+                <img src="https://via.placeholder.com/50" alt="Profile Picture"> 
+            </a>
+        </div>
+    </nav>
+
+
+
+
+
+<!-- ============================ Profile Page Section ============================= -->
+<section id="profile" class="tab-content">
+    <h2>Profile</h2>
+
+    <!-- Profile Information Form -->
+    <form id="profileForm">
+        <table>
+            <tr>
+                <td><label for="displayName">Display Name:</label></td>
+                <td><input type="text" id="displayName" name="displayName"></td>
+            </tr>
+            <tr>
+                <td><label for="username">Username:</label></td>
+                <td><input type="text" id="username" name="username"></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password:</label></td>
+                <td><input type="password" id="password" name="password"></td>
+            </tr>
+        </table>
+
+        <!-- Notes Section -->
+        <table>
+            <tr>
+                <th colspan="2">NOTES</th>
+            </tr>
+            <tr>
+                <td colspan="2"><textarea id="notes" name="notes" rows="4" cols="50"></textarea></td>
+            </tr>
+        </table>
+
+        <!-- Save Button -->
+        <button type="submit" id="saveButton">Save</button>
+    </form>
+</section>
+
+
+
+<!-- ============================== Home Page Section ============================== -->
+<section id="home">
+	<h2>Welcome to the Home Tab! Please select a week.</h2>
+	
+	<!-- Week Dropdown -->
+	<div class="dropdown">
+		<button id="weekDropdownButton">Select Week ▼</button>
+		<div class="dropdown-content" id="weekDropdown">
+			<a href="#" onclick="showWeek(1)">Week 1</a>
+			<a href="#" onclick="showWeek(2)">Week 2</a>
+			<a href="#" onclick="showWeek(3)">Week 3</a>
+			<a href="#" onclick="showWeek(4)">Week 4</a>
+			<a href="#" onclick="showWeek(5)">Week 5</a>
+		</div>
+	</div>
+
+<!-- Week Content -->
+<div id="week1Content" class="week-content">
+    <table id="assignmentTable">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Assigned To</th>
+                <th>Assignment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Row 1 -->
+            <tr>
+                <td><input type="text" id="user1" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo1" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment1" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+            <!-- Row 2 -->
+            <tr>
+                <td><input type="text" id="user2" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo2" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment2" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+            <!-- Row 3 -->
+            <tr>
+                <td><input type="text" id="user3" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo3" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment3" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+            <!-- Row 4 -->
+            <tr>
+                <td><input type="text" id="user4" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo4" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment4" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="saveTableData()">Save</button>
+</div>
+
+<!-- Week 2 Content -->
+<div id="week2Content" class="week-content">
+    <table id="assignmentTable2">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Assigned To</th>
+                <th>Assignment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Row 1 -->
+            <tr>
+                <td><input type="text" id="user1_2" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo1_2" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment1_2" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+            <!-- Row 2 -->
+            <tr>
+                <td><input type="text" id="user2_2" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo2_2" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment2_2" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+            <!-- Row 3 -->
+            <tr>
+                <td><input type="text" id="user3_2" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo3_2" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment3_2" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+            <!-- Row 4 -->
+            <tr>
+                <td><input type="text" id="user4_2" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo4_2" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment4_2" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="saveTableData()">Save</button>
+</div>
+
+<!-- Week 3 Content -->
+<div id="week3Content" class="week-content">
+    <table id="assignmentTable3">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Assigned To</th>
+                <th>Assignment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Row 1 -->
+            <tr>
+                <td><input type="text" id="user1_3" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo1_3" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment1_3" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+            <!-- Row 2 -->
+            <tr>
+                <td><input type="text" id="user2_3" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo2_3" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment2_3" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+            <!-- Row 3 -->
+            <tr>
+                <td><input type="text" id="user3_3" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo3_3" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment3_3" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+            <!-- Row 4 -->
+            <tr>
+                <td><input type="text" id="user4_3" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo4_3" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment4_3" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="saveTableData()">Save</button>
+</div>
+
+<!-- Week 4 Content -->
+<div id="week4Content" class="week-content">
+    <table id="assignmentTable4">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Assigned To</th>
+                <th>Assignment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Row 1 -->
+            <tr>
+                <td><input type="text" id="user1_4" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo1_4" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment1_4" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+            <!-- Row 2 -->
+            <tr>
+                <td><input type="text" id="user2_4" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo2_4" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment2_4" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+            <!-- Row 3 -->
+            <tr>
+                <td><input type="text" id="user3_4" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo3_4" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment3_4" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+            <!-- Row 4 -->
+            <tr>
+                <td><input type="text" id="user4_4" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo4_4" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment4_4" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="saveTableData()">Save</button>
+</div>
+
+<!-- Week 5 Content -->
+<div id="week5Content" class="week-content">
+    <table id="assignmentTable5">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Assigned To</th>
+                <th>Assignment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Row 1 -->
+            <tr>
+                <td><input type="text" id="user1_5" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo1_5" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment1_5" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+            <!-- Row 2 -->
+            <tr>
+                <td><input type="text" id="user2_5" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo2_5" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment2_5" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+            <!-- Row 3 -->
+            <tr>
+                <td><input type="text" id="user3_5" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo3_5" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment3_5" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+            <!-- Row 4 -->
+            <tr>
+                <td><input type="text" id="user4_5" maxlength="30" placeholder="Enter user" /></td>
+                <td><input type="text" id="assignedTo4_5" maxlength="30" placeholder="Assigned to" /></td>
+                <td><input type="text" id="assignment4_5" maxlength="30" placeholder="Assignment" /></td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="saveTableData()">Save</button>
+</div>
+</section>
+		
+		
+		
+		
+		
+<!-- ============================== My Movies Section ============================== -->
+<section id="myMovies">
+    <h2>Please enter the movie and its rating out of 5.</h2>
+
+<!-- Movie Form -->
+<div id="movieForm">
+    <label for="movieName">Movie Name:</label>
+    <input type="text" id="movieName" placeholder="Enter movie name" required><br><br>
+
+    <label for="movieGenre">Genre:</label>
+    <select id="movieGenre">
+        <option value="" disabled selected>Select Genre</option>
+        <option value="Action">Action</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Drama">Drama</option>
+        <option value="Horror">Horror</option>
+        <option value="Romance">Romance</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Documentary">Documentary</option>
+        <option value="Animation">Animation</option>
+        <option value="Musical">Musical</option>
+        <option value="Western">Western</option>
+        <option value="Historical">Historical</option>
+        <option value="Biographical">Biographical</option>
+        <option value="Family">Family</option>
+        <option value="War">War</option>
+        <option value="Sports">Sports</option>
+        <option value="Crime">Crime</option>
+    </select><br><br>
+
+    <label for="movieRating">Rating (out of 5):</label>
+    <input type="number" id="movieRating" min="1" max="5" placeholder="Enter rating" required><br><br>
+
+    <button id="addMovieButton">Add Movie</button>
+</div>
+
+
+
+    <!-- Movie Table -->
+<table id="movieTable">
+    <thead>
+        <tr>
+            <th>Movie</th>
+            <th>Genre</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+</section>
+	
+
+
+	
+
+<!-- ============================== Preferences Section ============================== -->
+<section id="preferences">
+    <h2>Please select your movie preferences!</h2>
+    <div class="preferences-container">
+        <!-- Genre Section -->
+        <div class="genre-section">
+            <h3>Genre</h3>
+            <ul>
+                <li><label>Action <input type="checkbox" name="genre" value="Action"></label></li>
+                <li><label>Adventure <input type="checkbox" name="genre" value="Adventure"></label></li>
+                <li><label>Comedy <input type="checkbox" name="genre" value="Comedy"></label></li>
+                <li><label>Drama <input type="checkbox" name="genre" value="Drama"></label></li>
+                <li><label>Horror <input type="checkbox" name="genre" value="Horror"></label></li>
+                <li><label>Romance <input type="checkbox" name="genre" value="Romance"></label></li>
+                <li><label>Sci-Fi <input type="checkbox" name="genre" value="Sci-Fi"></label></li>
+                <li><label>Fantasy <input type="checkbox" name="genre" value="Fantasy"></label></li>
+                <li><label>Thriller <input type="checkbox" name="genre" value="Thriller"></label></li>
+                <li><label>Mystery <input type="checkbox" name="genre" value="Mystery"></label></li>
+                <li><label>Documentary <input type="checkbox" name="genre" value="Documentary"></label></li>
+                <li><label>Animation <input type="checkbox" name="genre" value="Animation"></label></li>
+                <li><label>Musical <input type="checkbox" name="genre" value="Musical"></label></li>
+                <li><label>Western <input type="checkbox" name="genre" value="Western"></label></li>
+                <li><label>Historical <input type="checkbox" name="genre" value="Historical"></label></li>
+                <li><label>Biographical <input type="checkbox" name="genre" value="Biographical"></label></li>
+                <li><label>Family <input type="checkbox" name="genre" value="Family"></label></li>
+                <li><label>War <input type="checkbox" name="genre" value="War"></label></li>
+                <li><label>Sports <input type="checkbox" name="genre" value="Sports"></label></li>
+                <li><label>Crime <input type="checkbox" name="genre" value="Crime"></label></li>
+            </ul>
+        </div>
+
+        <!-- Ratings Section -->
+        <div class="ratings-section">
+            <h3>Rating</h3>
+            <ul>
+                <li><label>G <input type="checkbox" name="rating" value="G"></label></li>
+                <li><label>PG <input type="checkbox" name="rating" value="PG"></label></li>
+                <li><label>PG-13 <input type="checkbox" name="rating" value="PG-13"></label></li>
+                <li><label>R <input type="checkbox" name="rating" value="R"></label></li>
+                <li><label>NC-17 <input type="checkbox" name="rating" value="NC-17"></label></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Save Button -->
+    <button id="savePreferencesButton" class="save-button">Save Preferences</button>
+
+
+</section>
+
+
+
+
+
+<!-- ============================== Random Movie Section ============================== -->
+<section id="random-movie">
+    <h2>Random Movie</h2>
+
+    <!-- Genre Dropdown -->
+    <label for="randomMovieGenre">Select Genre:</label>
+    <select id="randomMovieGenre">
+        <option value="" disabled selected>Select a Genre</option>
+        <option value="Any">Any</option>
+        <option value="Action">Action</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Drama">Drama</option>
+        <option value="Horror">Horror</option>
+        <option value="Romance">Romance</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Documentary">Documentary</option>
+        <option value="Animation">Animation</option>
+        <option value="Musical">Musical</option>
+        <option value="Western">Western</option>
+        <option value="Historical">Historical</option>
+        <option value="Biographical">Biographical</option>
+        <option value="Family">Family</option>
+        <option value="War">War</option>
+        <option value="Sports">Sports</option>
+        <option value="Crime">Crime</option>
+    </select><br><br>
+
+    <!-- Roulette Wheel -->
+    <div id="randomMovieWheelContainer">
+        <div class="wheel" id="randomMovieWheel"></div>
+    </div>
+
+    <!-- Random Movie Button -->
+    <button id="randomMovieButton">Random Movie</button><br><br>
+
+    <!-- Random Movie Result Table -->
+    <table id="randomMovieResultTable">
+        <thead>
+            <tr>
+                <th>Random Movie</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="randomMovieResult">Your random movie will appear here!</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+	
+</html>
+
+
+
+<script>
+/* ============================== General Functions ============================== */
+
+// Function to show a specific tab section
+function showTab(tabName) {
+    const sections = document.querySelectorAll("section");
+    sections.forEach(section => section.style.display = "none");
+
+    const tabs = document.querySelectorAll(".tabs a");
+    tabs.forEach(tab => tab.classList.remove("active"));
+
+    document.getElementById(tabName).style.display = "block";
+    document.getElementById(`${tabName}Tab`).classList.add("active");
+}
+
+// Function to display the correct week's content
+function showWeek(weekNumber) {
+    document.querySelectorAll('.week-content').forEach(content => content.classList.remove('active-week'));
+    document.getElementById(`week${weekNumber}Content`).classList.add('active-week');
+    document.getElementById('weekDropdownButton').textContent = `Week ${weekNumber} ▼`;
+    document.getElementById('weekDropdown').style.display = 'none';
+}
+
+// Function to toggle the dropdown visibility
+function toggleDropdown() {
+    const dropdown = document.getElementById('weekDropdown');
+    dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+}
+
+document.getElementById('weekDropdownButton').addEventListener('click', toggleDropdown);
+
+
+/* ============================== Movie Functions ============================== */
+
+// Sample movies for each genre
+const moviesByGenre = {
+    Action: ["Mad Max", "Die Hard", "John Wick"],
+    Adventure: ["Indiana Jones", "Jurassic Park", "Pirates of the Caribbean"],
+    Comedy: ["The Hangover", "Superbad", "Step Brothers"],
+    Drama: ["Forrest Gump", "The Godfather", "Shawshank Redemption"],
+    Horror: ["The Conjuring", "It", "A Nightmare on Elm Street"],
+    Romance: ["Titanic", "The Notebook", "Pride and Prejudice"],
+    "Sci-Fi": ["Inception", "The Matrix", "Star Wars"],
+    Fantasy: ["The Lord of the Rings", "Harry Potter", "The Hobbit"],
+    Thriller: ["Seven", "The Silence of the Lambs", "Gone Girl"],
+    Mystery: ["Knives Out", "Sherlock Holmes", "The Girl with the Dragon Tattoo"],
+    Documentary: ["The Social Dilemma", "13th", "Free Solo"],
+    Animation: ["Toy Story", "Frozen", "Spirited Away"],
+    Musical: ["La La Land", "The Greatest Showman", "Mamma Mia!"],
+    Western: ["The Good, the Bad and the Ugly", "Unforgiven", "Django Unchained"],
+    Historical: ["Schindler's List", "The King's Speech", "Lincoln"],
+    Biographical: ["The Theory of Everything", "Bohemian Rhapsody", "A Beautiful Mind"],
+    Family: ["Finding Nemo", "The Lion King", "The Incredibles"],
+    War: ["Saving Private Ryan", "1917", "Dunkirk"],
+    Sports: ["Rocky", "Remember the Titans", "Moneyball"],
+    Crime: ["The Dark Knight", "Pulp Fiction", "The Departed"]
+};
+
+// Function to add movie to the table
+document.getElementById("addMovieButton").addEventListener("click", function () {
+    const movieName = document.getElementById("movieName").value;
+    const movieGenre = document.getElementById("movieGenre").value;
+    const movieRating = document.getElementById("movieRating").value;
+
+    if (movieName && movieGenre && movieRating >= 1 && movieRating <= 5) {
+        const table = document.getElementById("movieTable").getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+        const nameCell = newRow.insertCell(0);
+        const genreCell = newRow.insertCell(1);
+        const ratingCell = newRow.insertCell(2);
+
+        nameCell.textContent = movieName;
+        genreCell.textContent = movieGenre;
+        ratingCell.textContent = movieRating;
+
+        document.getElementById("movieName").value = '';
+        document.getElementById("movieGenre").value = '';
+        document.getElementById("movieRating").value = '';
+    } else {
+        alert("Please enter valid details for the movie, genre, and rating.");
+    }
+});
+
+
+/* ============================== Random Movie Functions ============================== */
+
+// Function to spin the roulette wheel
+function spinWheel() {
+    const wheel = document.querySelector(".wheel");
+
+    const fullRotations = 2 * 360; 
+    const randomDegree = Math.floor(Math.random() * 360); 
+    const totalRotation = fullRotations + randomDegree; 
+
+    wheel.style.transform = `rotate(${totalRotation}deg)`;
+}
+
+// Handle the Random Movie button
+document.getElementById("randomMovieButton").addEventListener("click", function () {
+    const selectedGenre = document.getElementById("randomMovieGenre").value;
+
+    if (!selectedGenre) {
+        alert("Please select a genre before spinning!");
+        return;
+    }
+
+    spinRandomMovieWheel();
+
+    setTimeout(() => {
+        let randomMovies;
+
+        if (selectedGenre === "Any") {
+            randomMovies = Object.values(moviesByGenre).flat();
+        } else {
+            randomMovies = moviesByGenre[selectedGenre];
+        }
+
+        const randomIndex = Math.floor(Math.random() * randomMovies.length);
+        const randomMovie = randomMovies[randomIndex];
+
+        document.getElementById("randomMovieResult").textContent = `Random Movie: ${randomMovie}`;
+    }, 4000);
+});
+
+// Function to spin the Random Movie wheel
+function spinRandomMovieWheel() {
+    const wheel = document.getElementById("randomMovieWheel");
+
+    wheel.style.transition = "none"; 
+    wheel.style.transform = "rotate(0deg)"; 
+
+    wheel.offsetHeight;
+
+    const fullRotations = 2 * 360; 
+    const randomDegree = Math.floor(Math.random() * 360); 
+    const totalRotation = fullRotations + randomDegree; 
+
+    wheel.style.transition = "transform 4s ease-out"; 
+    wheel.style.transform = `rotate(${totalRotation}deg)`;
+}
+
+/* ============================== Profile Page Section =============================== */
+document.getElementById('profileForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const displayName = document.getElementById('displayName').value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const notes = document.getElementById('notes').value;
+
+    // Save the information (you can modify this part to actually save the data)
+    console.log('Saved Info:', {
+        displayName: displayName,
+        username: username,
+        password: password,
+        notes: notes
+    });
+
+    alert('Your profile has been saved!');
+});
+
+</script>
+	
 
 
 {% endblock %}
