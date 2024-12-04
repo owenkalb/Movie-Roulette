@@ -24,7 +24,7 @@ Steps to just see the webpage without downloading the full repo
 # User Manual
 # Home Page
 After opening the webpage in however way you choose to do so, you are sent to the home page.
-The home page prompts you to select a week. Since this should be your first time, you will have to add the users in the group and then choose who they are assigned to and what movie they are assigned to watch. This will be done for every week. Make sure to save your changes before moving to other tabs.
+The home page prompts you to select how many users you have in the group (2-10). Since this should be your first time, you will have to add the users to the group and then click on the generate table button.  This will create a table that will randomly assign users to another user for that week. It is the users job to assign the movie to them, whether they have one in mind or go to the random generator. Make sure to save your changes before moving to other tabs.
 
 # MyMovies
 The next available tab is the MyMovie section. This tab allows the user to enter movies with the genres that they've watched. They can add as many as they want to. The goal for this on the user's side is to create a list of movies that they have watched so that they can keep track of them. This hasn't been implemented yet, but we would like to take these inputs for movies and genres to help populate our random movie generator since entering every movie can be tedious.
