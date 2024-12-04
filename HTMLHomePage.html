@@ -914,30 +914,30 @@ document.getElementById('weekDropdownButton').addEventListener('click', toggleDr
 
 
 /* ============================== Movie Functions ============================== */
-
-// Sample movies for each genre
+/* generate movie list until database works */
 const moviesByGenre = {
-    Action: ["Mad Max", "Die Hard", "John Wick"],
-    Adventure: ["Indiana Jones", "Jurassic Park", "Pirates of the Caribbean"],
-    Comedy: ["The Hangover", "Superbad", "Step Brothers"],
-    Drama: ["Forrest Gump", "The Godfather", "Shawshank Redemption"],
-    Horror: ["The Conjuring", "It", "A Nightmare on Elm Street"],
-    Romance: ["Titanic", "The Notebook", "Pride and Prejudice"],
-    "Sci-Fi": ["Inception", "The Matrix", "Star Wars"],
-    Fantasy: ["The Lord of the Rings", "Harry Potter", "The Hobbit"],
-    Thriller: ["Seven", "The Silence of the Lambs", "Gone Girl"],
-    Mystery: ["Knives Out", "Sherlock Holmes", "The Girl with the Dragon Tattoo"],
-    Documentary: ["The Social Dilemma", "13th", "Free Solo"],
-    Animation: ["Toy Story", "Frozen", "Spirited Away"],
-    Musical: ["La La Land", "The Greatest Showman", "Mamma Mia!"],
-    Western: ["The Good, the Bad and the Ugly", "Unforgiven", "Django Unchained"],
-    Historical: ["Schindler's List", "The King's Speech", "Lincoln"],
-    Biographical: ["The Theory of Everything", "Bohemian Rhapsody", "A Beautiful Mind"],
-    Family: ["Finding Nemo", "The Lion King", "The Incredibles"],
-    War: ["Saving Private Ryan", "1917", "Dunkirk"],
-    Sports: ["Rocky", "Remember the Titans", "Moneyball"],
-    Crime: ["The Dark Knight", "Pulp Fiction", "The Departed"]
+    Action: ["Mad Max", "Die Hard", "John Wick", "The Dark Knight", "Gladiator", "Terminator 2", "The Avengers", "Spider-Man: No Way Home", "Mission: Impossible – Fallout", "Fury Road"],
+    Adventure: ["Indiana Jones", "Jurassic Park", "Pirates of the Caribbean", "The Goonies", "The Princess Bride", "The Lord of the Rings: The Fellowship of the Ring", "Jumanji", "King Kong", "The Mummy", "Avatar"],
+    Comedy: ["The Hangover", "Superbad", "Step Brothers", "Dumb and Dumber", "Anchorman", "The 40-Year-Old Virgin", "Groundhog Day", "Tropic Thunder", "The Big Lebowski", "21 Jump Street"],
+    Drama: ["Forrest Gump", "The Godfather", "Shawshank Redemption", "A Beautiful Mind", "The Pursuit of Happyness", "The Green Mile", "The Social Network", "Goodfellas", "Gladiator", "Citizen Kane"],
+    Horror: ["The Conjuring", "It", "A Nightmare on Elm Street", "The Exorcist", "Halloween", "The Shining", "Hereditary", "Get Out", "The Ring", "Saw"],
+    Romance: ["Titanic", "The Notebook", "Pride and Prejudice", "La La Land", "The Fault in Our Stars", "Notting Hill", "Pretty Woman", "When Harry Met Sally", "Crazy, Stupid, Love", "500 Days of Summer"],
+    "Sci-Fi": ["Inception", "The Matrix", "Star Wars", "Blade Runner", "The Terminator", "Interstellar", "2001: A Space Odyssey", "Minority Report", "Star Trek", "E.T. the Extra-Terrestrial"],
+    Fantasy: ["The Lord of the Rings", "Harry Potter", "The Hobbit", "Alice in Wonderland", "The Chronicles of Narnia", "Pan's Labyrinth", "Stardust", "The Dark Crystal", "The Princess Bride", "Eragon"],
+    Thriller: ["Seven", "The Silence of the Lambs", "Gone Girl", "Fight Club", "Prisoners", "Shutter Island", "Gone Baby Gone", "The Sixth Sense", "Zodiac", "The Girl with the Dragon Tattoo"],
+    Mystery: ["Knives Out", "Sherlock Holmes", "The Girl with the Dragon Tattoo", "The Usual Suspects", "Murder on the Orient Express", "The Prestige", "The Big Sleep", "Chinatown", "L.A. Confidential", "The Secret Window"],
+    Documentary: ["The Social Dilemma", "13th", "Free Solo", "Won't You Be My Neighbor?", "Jiro Dreams of Sushi", "Blackfish", "Making a Murderer", "The Last Dance", "Inside Job", "Freeway: Crack in the System"],
+    Animation: ["Toy Story", "Frozen", "Spirited Away", "The Lion King", "Shrek", "Finding Nemo", "Up", "Monsters, Inc.", "Coco", "Zootopia"],
+    Musical: ["La La Land", "The Greatest Showman", "Mamma Mia!", "Chicago", "Les Misérables", "Grease", "The Sound of Music", "Singin' in the Rain", "West Side Story", "Rent"],
+    Western: ["The Good, the Bad and the Ugly", "Unforgiven", "Django Unchained", "True Grit", "No Country for Old Men", "The Magnificent Seven", "The Revenant", "Tombstone", "Silverado", "3:10 to Yuma"],
+    Historical: ["Schindler's List", "The King's Speech", "Lincoln", "12 Years a Slave", "The Imitation Game", "The Pianist", "Bridge of Spies", "The Bridge on the River Kwai", "Dunkirk", "American Sniper"],
+    Biographical: ["The Theory of Everything", "Bohemian Rhapsody", "A Beautiful Mind", "The Social Network", "Catch Me If You Can", "The Wolf of Wall Street", "Rocketman", "The Pursuit of Happyness", "Selma", "Walk the Line"],
+    Family: ["Finding Nemo", "The Lion King", "The Incredibles", "Toy Story", "Shrek", "The Jungle Book", "Up", "Frozen", "Zootopia", "Moana"],
+    War: ["Saving Private Ryan", "1917", "Dunkirk", "Full Metal Jacket", "Platoon", "Apocalypse Now", "The Thin Red Line", "Black Hawk Down", "Hacksaw Ridge", "The Deer Hunter"],
+    Sports: ["Rocky", "Remember the Titans", "Moneyball", "The Sandlot", "Raging Bull", "A League of Their Own", "The Blind Side", "Miracle", "Coach Carter", "Field of Dreams"],
+    Crime: ["The Dark Knight", "Pulp Fiction", "The Departed", "Goodfellas", "The Godfather", "Scarface", "Heat", "Donnie Brasco", "The Usual Suspects", "Reservoir Dogs"]
 };
+
 
 // Function to add movie to the table
 document.getElementById("addMovieButton").addEventListener("click", function () {
