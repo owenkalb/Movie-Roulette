@@ -4,7 +4,7 @@
 
 <!-- Replace block content in base_template.html -->
 {% block content %}
-	<!DOCTYPE html>
+		<!DOCTYPE html>
 	<html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -438,7 +438,7 @@ table th {
 }
 
 input[type="text"], input[type="password"], textarea {
-    width: 98%;
+    width: 75%;
     padding: 8px;
     margin: 5px 0;
     border: 1px solid #ccc;
@@ -522,222 +522,48 @@ button:hover {
 
 
 
+
+
 <!-- ============================== Home Page Section ============================== -->
 <section id="home">
-	<h2>Welcome to the Home Tab! Please select a week.</h2>
-	
-	<!-- Week Dropdown -->
-	<div class="dropdown">
-		<button id="weekDropdownButton">Select Week ▼</button>
-		<div class="dropdown-content" id="weekDropdown">
-			<a href="#" onclick="showWeek(1)">Week 1</a>
-			<a href="#" onclick="showWeek(2)">Week 2</a>
-			<a href="#" onclick="showWeek(3)">Week 3</a>
-			<a href="#" onclick="showWeek(4)">Week 4</a>
-			<a href="#" onclick="showWeek(5)">Week 5</a>
-		</div>
-	</div>
+    <h2>Welcome to the Home Tab! Please enter your group details.</h2>
 
-<!-- Week Content -->
-<div id="week1Content" class="week-content">
-    <table id="assignmentTable">
-        <thead>
-            <tr>
-                <th>User</th>
-                <th>Assigned To</th>
-                <th>Assignment</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Row 1 -->
-            <tr>
-                <td><input type="text" id="user1" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo1" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment1" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-            <!-- Row 2 -->
-            <tr>
-                <td><input type="text" id="user2" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo2" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment2" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-            <!-- Row 3 -->
-            <tr>
-                <td><input type="text" id="user3" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo3" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment3" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-            <!-- Row 4 -->
-            <tr>
-                <td><input type="text" id="user4" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo4" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment4" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-        </tbody>
-    </table>
-    <button onclick="saveTableData()">Save</button>
+    <!-- Group Member Input -->
+    <div id="groupSetup">
+        <label for="groupSize">How many group members do you have? (2-10):</label>
+        <input type="number" id="groupSize" min="2" max="10" placeholder="Enter number of members" required>
+        <button id="generateNamesButton">Next</button>
+    </div>
+
+    <!-- Member Name Input -->
+    <div id="nameInputSection" style="display: none;">
+        <h3>Enter Group Member Names:</h3>
+        <div id="nameInputs"></div>
+        <button id="generateTableButton">Generate Table</button>
+    </div>
+
+    <!-- Week Dropdown -->
+    <div class="dropdown" style="margin-top: 20px; display: none;" id="weekDropdownSection">
+        <button id="weekDropdownButton">Select Week ▼</button>
+        <div class="dropdown-content" id="weekDropdown">
+            <a href="#" onclick="showWeek(1)">Week 1</a>
+            <a href="#" onclick="showWeek(2)">Week 2</a>
+            <a href="#" onclick="showWeek(3)">Week 3</a>
+            <a href="#" onclick="showWeek(4)">Week 4</a>
+            <a href="#" onclick="showWeek(5)">Week 5</a>
+        </div>
+    </div>
+
+    <!-- Week Content -->
+    <div id="weeksContent"></div>
+    <div id="saveAssignmentsButtonContainer">
+    <button id="saveAssignmentsButton">Save All Assignments</button>
 </div>
 
-<!-- Week 2 Content -->
-<div id="week2Content" class="week-content">
-    <table id="assignmentTable2">
-        <thead>
-            <tr>
-                <th>User</th>
-                <th>Assigned To</th>
-                <th>Assignment</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Row 1 -->
-            <tr>
-                <td><input type="text" id="user1_2" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo1_2" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment1_2" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-            <!-- Row 2 -->
-            <tr>
-                <td><input type="text" id="user2_2" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo2_2" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment2_2" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-            <!-- Row 3 -->
-            <tr>
-                <td><input type="text" id="user3_2" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo3_2" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment3_2" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-            <!-- Row 4 -->
-            <tr>
-                <td><input type="text" id="user4_2" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo4_2" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment4_2" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-        </tbody>
-    </table>
-    <button onclick="saveTableData()">Save</button>
-</div>
-
-<!-- Week 3 Content -->
-<div id="week3Content" class="week-content">
-    <table id="assignmentTable3">
-        <thead>
-            <tr>
-                <th>User</th>
-                <th>Assigned To</th>
-                <th>Assignment</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Row 1 -->
-            <tr>
-                <td><input type="text" id="user1_3" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo1_3" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment1_3" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-            <!-- Row 2 -->
-            <tr>
-                <td><input type="text" id="user2_3" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo2_3" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment2_3" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-            <!-- Row 3 -->
-            <tr>
-                <td><input type="text" id="user3_3" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo3_3" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment3_3" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-            <!-- Row 4 -->
-            <tr>
-                <td><input type="text" id="user4_3" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo4_3" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment4_3" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-        </tbody>
-    </table>
-    <button onclick="saveTableData()">Save</button>
-</div>
-
-<!-- Week 4 Content -->
-<div id="week4Content" class="week-content">
-    <table id="assignmentTable4">
-        <thead>
-            <tr>
-                <th>User</th>
-                <th>Assigned To</th>
-                <th>Assignment</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Row 1 -->
-            <tr>
-                <td><input type="text" id="user1_4" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo1_4" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment1_4" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-            <!-- Row 2 -->
-            <tr>
-                <td><input type="text" id="user2_4" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo2_4" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment2_4" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-            <!-- Row 3 -->
-            <tr>
-                <td><input type="text" id="user3_4" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo3_4" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment3_4" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-            <!-- Row 4 -->
-            <tr>
-                <td><input type="text" id="user4_4" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo4_4" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment4_4" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-        </tbody>
-    </table>
-    <button onclick="saveTableData()">Save</button>
-</div>
-
-<!-- Week 5 Content -->
-<div id="week5Content" class="week-content">
-    <table id="assignmentTable5">
-        <thead>
-            <tr>
-                <th>User</th>
-                <th>Assigned To</th>
-                <th>Assignment</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Row 1 -->
-            <tr>
-                <td><input type="text" id="user1_5" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo1_5" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment1_5" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-            <!-- Row 2 -->
-            <tr>
-                <td><input type="text" id="user2_5" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo2_5" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment2_5" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-            <!-- Row 3 -->
-            <tr>
-                <td><input type="text" id="user3_5" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo3_5" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment3_5" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-            <!-- Row 4 -->
-            <tr>
-                <td><input type="text" id="user4_5" maxlength="30" placeholder="Enter user" /></td>
-                <td><input type="text" id="assignedTo4_5" maxlength="30" placeholder="Assigned to" /></td>
-                <td><input type="text" id="assignment4_5" maxlength="30" placeholder="Assignment" /></td>
-            </tr>
-        </tbody>
-    </table>
-    <button onclick="saveTableData()">Save</button>
-</div>
 </section>
+
+    
+
 		
 		
 		
@@ -919,6 +745,149 @@ button:hover {
 
 
 <script>
+/* ============================== Home Page ============================== */
+// Variables for group members and assignments
+let groupMembers = [];
+let allAssignments = [];
+let assignments = {}; // To store the assignments for each week
+
+// Generate name input fields based on group size
+document.getElementById("generateNamesButton").addEventListener("click", () => {
+    const groupSize = parseInt(document.getElementById("groupSize").value);
+    if (isNaN(groupSize) || groupSize < 2 || groupSize > 10) {
+        alert("Please enter a valid number between 2 and 10.");
+        return;
+    }
+
+    const nameInputs = document.getElementById("nameInputs");
+    nameInputs.innerHTML = ""; // Clear previous inputs
+    for (let i = 0; i < groupSize; i++) {
+        const input = document.createElement("input");
+        input.type = "text";
+        input.placeholder = `Enter name for Member ${i + 1}`;
+        input.id = `memberName${i}`;
+        input.required = true;
+        nameInputs.appendChild(input);
+        nameInputs.appendChild(document.createElement("br"));
+    }
+
+    document.getElementById("nameInputSection").style.display = "block";
+});
+
+// Generate table and rotate assignments
+document.getElementById("generateTableButton").addEventListener("click", () => {
+    groupMembers = [];
+    const nameInputs = document.getElementById("nameInputs").querySelectorAll("input");
+    nameInputs.forEach(input => {
+        if (input.value.trim() !== "") {
+            groupMembers.push(input.value.trim());
+        }
+    });
+
+    if (groupMembers.length < 2) {
+        alert("Please enter valid names for all members.");
+        return;
+    }
+
+    document.getElementById("weekDropdownSection").style.display = "block";
+    document.getElementById("saveAssignmentsButton").style.display = "block"; // Show save button
+
+    // Generate tables for all weeks
+    generateAllWeekContent();
+    showWeek(1); // Show the first week by default
+});
+
+// Generate content for all weeks
+function generateAllWeekContent() {
+    const weeksContent = document.getElementById("weeksContent");
+    weeksContent.innerHTML = ""; // Clear previous content
+
+    for (let weekNumber = 1; weekNumber <= 5; weekNumber++) {
+        const weekDiv = document.createElement("div");
+        weekDiv.id = `week${weekNumber}Content`;
+        weekDiv.className = "week-content";
+
+        const table = document.createElement("table");
+        table.id = `week${weekNumber}Table`;
+        table.innerHTML = `
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Assigned To</th>
+                    <th>Assignment</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${generateAssignmentsForWeek(weekNumber).map((assignment, index) => {
+                    return `
+                        <tr>
+                            <td>${groupMembers[index]}</td>
+                            <td>${assignment}</td>
+                            <td>
+                                <input type="text" id="assignmentInput${weekNumber}-${index}" maxlength="30" placeholder="Enter movie title" />
+                            </td>
+                        </tr>
+                    `;
+                }).join("")}
+            </tbody>
+        `;
+        weekDiv.appendChild(table);
+        weeksContent.appendChild(weekDiv);
+    }
+}
+
+// Generate the assignments for each week
+function generateAssignmentsForWeek(weekNumber) {
+    let assignments = [...groupMembers]; // Copy the group members
+
+    // Rotate the assignments for the week (rotate by one position each week)
+    for (let i = 0; i < weekNumber - 1; i++) {
+        assignments.push(assignments.shift()); // Move the first element to the end
+    }
+
+    // Generate the "Assigned To" for each user
+    return assignments.map((assignee, index) => {
+        return assignments[(index + 1) % assignments.length]; // Next member is assigned to the current member
+    });
+}
+
+// Handle week selection
+function showWeek(weekNumber) {
+    document.querySelectorAll(".week-content").forEach((weekDiv, index) => {
+        weekDiv.style.display = index === weekNumber - 1 ? "block" : "none";
+    });
+
+    document.getElementById("weekDropdownButton").textContent = `Week ${weekNumber} ▼`;
+    document.querySelectorAll(".dropdown-content").forEach(dropdown => dropdown.style.display = "none");
+}
+
+// Save assignments for all weeks
+document.getElementById("saveAssignmentsButton").addEventListener("click", () => {
+    // Initialize or reset the assignments object
+    assignments = {};
+
+    for (let weekNumber = 1; weekNumber <= 5; weekNumber++) {
+        assignments[weekNumber] = [];
+
+        // Get the inputs for this week
+        const weekInputs = document.querySelectorAll(`#week${weekNumber}Table input`);
+        weekInputs.forEach((input, index) => {
+            if (input.value.trim() !== "") {
+                assignments[weekNumber].push(input.value.trim());
+            } else {
+                assignments[weekNumber].push(""); // If the input is empty, save as empty string
+            }
+        });
+    }
+
+    console.log("Assignments saved:", assignments);
+    alert("Assignments have been saved!");
+});
+    
+
+
+
+
 /* ============================== General Functions ============================== */
 
 // Function to show a specific tab section
@@ -1080,6 +1049,8 @@ document.getElementById('profileForm').addEventListener('submit', function(event
 });
 
 </script>
+	
+
 	
 
 
